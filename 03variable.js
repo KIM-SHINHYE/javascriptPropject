@@ -44,7 +44,7 @@ const maxNumber = 5;
 // 4-1. primitive (더이상 나눠지지 않는 single item): number, string, boolean, null, undefined, symbol
 // 4-2. object(primitive타입을 여러 개로 묶어서 관리), box container
 // 4-3. function, first-class function -> function을 데이터 타입으로 사용 가능(인자, 매개변수, 리턴값 모두 가능)
-// primitive, object인지에 따라 메모리에 다른 방식으로 저장됨
+// primitive(메모리에 value 저장), object(메모리에 reference 저장)인지에 따라 메모리에 다른 방식으로 저장됨
 
 const count = 17 // integer
 const size = 17.1; // decimal number
