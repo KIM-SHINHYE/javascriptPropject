@@ -62,9 +62,11 @@ async function pickFruitsAsync() {
     try{
         const apple = await getApple();
         const banana = await getBanana();
-        return `${apple} + ${banana}`;
+        // return `${apple} + ${banana}`;
+        return Promise.resolve(`${apple} + ${banana}`);
     } catch (error){
         console.log(error);
+        return Promise.reject(error);
     }
 }
 
