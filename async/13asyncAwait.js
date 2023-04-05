@@ -18,7 +18,8 @@
 
 // async 키워드를 함수 앞에 붙이게 되면 코드블럭이 알아서 Promise객체로 반환해줌
 async function fetchUser() {
-    return 'ellie'; // async만 놔도 promise객체로 반환해줌
+    // return 'async/await';
+    return Promise.resolve('async/await'); // async만 놔도 promise객체로 반환해줌
 }
 
 const user = fetchUser(); // promise든 async든 promise객체로 반환
@@ -55,18 +56,24 @@ function pickFruitsPromise() {
     });
 }
 
-pickFruitsPromise().then(console.log) // 🍎 + 🍌
+// pickFruitsPromise().then(console.log) // 🍎 + 🍌
 
 async function pickFruitsAsync() {
     // 호출하는 곳에서 error가 발생할 경우 error handling을 try, catch로 할 수 있음
     try{
+        console.log("apple 바로 직전")
+
         const apple = await getApple();
+        console.log("apple",apple);
+        console.log("apple 바로 직후/banana 바로 직전")
         const banana = await getBanana();
-        // return `${apple} + ${banana}`;
-        return Promise.resolve(`${apple} + ${banana}`);
+        console.log("banana", banana);
+        console.log("banana 바로 직후")
+        return `${apple} + ${banana}`;
+        // return Promise.resolve(`${apple} + ${banana}`); await를 통해 resolve된 후의 값을 받아오는 것이므로 굳이 resolve하지 않아도 됨
     } catch (error){
         console.log(error);
-        return Promise.reject(error);
+        // return Promise.reject(error);
     }
 }
 
@@ -91,13 +98,13 @@ function pickAllFruits() {
     return Promise.all([getApple(), getBanana()]) // 다 받아지면 
     .then(fruits => fruits.join(' + ')); // 그 받아진 애들이 배열로 전달됨
 }
-pickAllFruits().then(console.log); // 🍎 + 🍌
+// pickAllFruits().then(console.log); // 🍎 + 🍌
 
 // Promise.race: 배열에 전달된 promise들 중 가장 먼저 값을 return 하는 걸 먼저 돌려줌
 function pickOnlyOne() {
     // apple은 1초, banana는 2초 걸리기 때문에 apple이 return됨
     return Promise.race([getApple(), getBanana()]);
 }
-pickOnlyOne().then(console.log)
+// pickOnlyOne().then(console.log)
 
 // 12callback-to-promise.js에 있는 걸 async/await로 변경해보기
