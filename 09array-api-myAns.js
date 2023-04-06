@@ -1,7 +1,7 @@
 // Q1. make a string out of an array
 {
     const fruits = ['apple', 'banana', 'orange'];
-    // 1. toStrin 이용 - ,를 구분자로 연결
+    // 1. toString 이용 - ,를 구분자로 연결
     const fruitsStr1 = fruits.toString();
     // console.log(fruitsStr1);
 
@@ -48,9 +48,9 @@
     const array = [1, 2, 3, 4, 5];
     // const spliceArr = array.splice(2);
     const sliceArr = array.slice(2)
-    console.log(array); // [1, 2]
+    // console.log(array); // [1, 2]
     // console.log(spliceArr); // [3, 4, 5]
-    console.log(sliceArr); // [3, 4, 5]
+    // console.log(sliceArr); // [3, 4, 5]
     // slice랑 splice를 쓰는 느낌은 비슷하지만 원본이 변경되는지 안되는지 차이 있음
 
 }
@@ -101,7 +101,7 @@ const students = [
     students.forEach(student => {
         scores.push(student.score);
     })
-    console.log(scores);
+    // console.log(scores);
 
 }
 
@@ -113,18 +113,42 @@ const students = [
             lowerScore.push(student.name);
         }
     }
+    // console.log(lowerScore);
 }
 
 // Q9. compute students' average score
 {
+    let avg = 0;
+    for(let student of students){
+        avg += student.score;
+    }
+    if(avg != 0){
+        avg = avg / students.length;
+    }
+    // console.log(avg);
 }
 
 // Q10. make a string containing all the scores
 // result should be: '45, 80, 90, 66, 88'
 {
+    let intToStr = '';
+    students.forEach(student => {
+        let separator = ', '
+        if(!intToStr){
+            intToStr += student.score
+        } else{
+            intToStr = intToStr + separator + student.score
+        }
+    })
+    // console.log(intToStr);
 }
 
 // Bonus! do Q10 sorted in ascending order
 // result should be: '45, 66, 80, 88, 90'
 {
+    let arr = students.sort((a,b) => a.score - b.score)
+    let arrStr = arr.map(student => {
+        return String(student.score).toString();
+    })
+    console.log(arrStr);
 }
