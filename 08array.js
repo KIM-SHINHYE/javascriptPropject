@@ -57,7 +57,7 @@ console.log(fruits);
 
 // unshift, shift는 pop, push, index를 이용해 요소에 접근하는 것보다 상당히 느림 => unshift, shift는 앞에서 부터 조작하는 것이기 때문에 앞에 있는 요소들을 뒤로 미뤄줘야하기 때문에 느림. 배열이 길면 길수록 뒤로 보내야 할 것들이 더 많기 때문에 더 오래걸리게 됨
 
-// splice: remove an item by index position(만약 인자값을 한 개만 쓰면 해당 index로 부터 그 뒤의 요소들을 다 지움, 따라서 한 개만 지우고 싶다 그러면 (2,1) 이런 식으로 써줘야함)
+// splice: remove an item by index position(만약 인자값을 한 개만 쓰면 해당 index로 부터 그 뒤의 요소들을 다 지움, 따라서 한 개만 지우고 싶다 그러면 (2,1) 이런 식으로 써줘야함), 원본 배열에 영향 줌
 fruits.push('🍓', '🍑', '🍋');
 console.log(fruits);
 // fruits.splice(1); // 인자값을 한 개만 쓰면 해당 index로 부터 그 뒤의 요소들을 다 지움
