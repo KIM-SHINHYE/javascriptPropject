@@ -161,7 +161,7 @@ const students = [
 {
     const result = students
         .map((student => student.score))
-        .sort((a, b) => a - b)
+        .sort((a, b) => a - b) // -를 리턴하면 첫번째꺼가 뒤에꺼보다 작다
         .join();
     console.log(result);
 }
