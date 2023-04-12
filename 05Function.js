@@ -9,7 +9,7 @@
 // - 한 가지의 일이나 어떤 값을 계산하기 위해 사용
 
 // === [1. Function declaration] ===
-// function name(param1, param2) {body ... return;}
+// 형태: function name(param1, param2) {body ... return;}
 
 // 함수는 한가지의 일만 담당해야 함
 // one function == one thing
@@ -34,7 +34,7 @@ log(1234)
 // typescript 페이지에 오면 playground가 있는데 여기서 어떤 식으로 호환가능한지 직접 적어볼 수 있음(타입스크립트 쓸 때 자바스크립트는 어떤지)
 
 // 2. Parameters
-// premitive parameters: passed by value - 메모리에 value가 그대로 저장
+// primitive parameters: passed by value - 메모리에 value가 그대로 저장
 // object parameters: passed by reference - 메모리에 reference가 저장
 function changeName(obj){
     obj.name = 'coder'; // 전달된 obj(object)의 name을 coder로 변환
@@ -43,7 +43,7 @@ function changeName(obj){
 const ellie = {name : 'ellie'}; // ellie 객체를 만들어 할당하면 메모리에 오브젝트가 만들어진 ref가 저장, ref는 오브젝트를 메모리 어딘가 지정
 // 즉, 오브젝트는 ref로 전달되기 때문에 함수 안에서 오브젝트의 값을 변경하게 되면 그 변경사항이 그대로 메모리에 적용
 changeName(ellie); // ellie 객체의 name이 coder로 변환
-console.log(ellie);
+console.log('ellie', ellie);
 
 // 3. Default parameters(added in ES6)
 function showMessage(message, from = 'unknown'){
@@ -51,27 +51,34 @@ function showMessage(message, from = 'unknown'){
 }
 showMessage('HI!'); // HI! by unknown
 // 현재 파라미터로 'HI!' 1개만 보냈기에, 안보낸 것은  default인 unknown로 세팅
-// 그 default는 = '' 형태로 사용 가능
+// 그 default는 from = '' 형태로 사용 가능
 
 // 4. Rest parameters (added is ES6)
 // ...은 배열 형태로 전달받게 됨
-function printAll(...args){ // 파라미터 자체는 args
+function printAll(...args){ // 파라미터명 자체는 args
     // 출력방법 1.
     for(let i = 0; i < args.length; i++){
         console.log(args[i]);
     }
 
-    // 출력방법 2. of사용
+    // 출력방법 2. of 사용 - 배열 요소 출력할 때 적합
     for(const arg of args){
-        console.log(arg);
+        console.log('for of사용', arg);
+    }
+
+    // 출력방법 3. in 사용 - 객체의 프로퍼티 출력할 때 적합
+    for(const arg in args) {
+        console.log('for in사용', args[arg]);
     }
     
-    // 출력방법 3. forEach사용, 배열일 때 사용
+    // 출력방법 4. forEach사용, 배열일 때 사용
     args.forEach((arg => console.log(arg)))
+
 }
 
 printAll('dream', 'coding', 'ellie'); // 3개의 인자를 전달하면 해당 함수에서는 ...args를 통해 이 3개의 문자열을 배열로 받게 됨
 
+console.clear();
 // 5. Local scope
 // 밖에서는 안이 보이지 않고, 안에서만 밖을 볼 수 있다.(변수도, 함수도 마찬가지)
 let globalMessage = 'global'; // global variable
@@ -82,23 +89,27 @@ function printMessage() {
 
     // 함수 안에 다른 함수 정의
     function printAnother(){ 
-        console.log(message); // 자식은 부모에게서 정의된 message를 확인할 수 있음
+        console.log('printAnother() msg', message); // 자식은 부모에게서 정의된 message를 확인할 수 있음
         let childMessage = 'hello'; // 하지만, childMessage를 부모에서 확인하려면 볼 수 없음(밖에서는 안을 볼 수 없기 떄문)
         // return undefined 생략됨
     }
     // console.log(childMessage); // 에러뜸 - 자식에게 정의된 childMessage 변수는 밖(부모)에서 볼 수 없기 때문
 
     // 중첩된 함수에서 자식의 함수가 부모의 함수에 정의된 변수들에 접근가능 한 것이 클로저란 개념
+    printAnother();
 }
 
 printMessage();
 // console.log(message); // 에러뜸 - 지역변수를 밖에서 볼 수 없기 때문
 
+// 함수 안의 함수는 호출할 수 없음
+// printAnother(); 에러
+
 
 // 6.  Return a value
 function sum(a, b){
     return a+b; 
-    // return undefined // return타입이 없는 것은  return undefined가 쓰여져 있고, 이것은 생략가능
+    // return undefined // return타입이 없는 것은 return undefined가 쓰여져 있고, 이것은 생략가능
 }
 
 const result = sum(1,2); // 3
@@ -122,10 +133,11 @@ function upgradeUser(user){
 }
 
 // === [2. Function Expression] ===
+// 변수에 할당
 
 /*
 First-class function
-functions are treated like any other variable 
+functions are treated like any other variable(함수는 객체의 일종이기 때문에 가능)
 - can be assigned as a value to variable - 함수는 다른 변수처럼 할당가능
 - can be passed as an argument to other functions. - 함수는 매개변수로 전달 가능
 - can be returned by another function - 다른 함수로 리턴가능
@@ -146,10 +158,12 @@ const print = function(){
 
 print(); // 함수를 print변수에 할당했기 때문에 호출하려면 괄호를 써줘야 함
 
-// named function - function 옆에 이름이 있는 함수
-// const print = function print(){ 
-//     console.log('print');
-// };
+// named function - function 옆에 이름이 있는 함수 - 옆에 이름이 있어도 할당된 변수 이름 호출해줘야 함
+const printDiff = function print(){ 
+    console.log('printDiff');
+};
+
+printDiff();
 
 const printAgain = print; // 이미 print 에 함수가 할당되어 있기 때문에 다른 변수에 할당 한 후, 호출할 때도 아래처럼 괄호를 같이 써줘야 호출 가능
 printAgain();

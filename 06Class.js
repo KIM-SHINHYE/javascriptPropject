@@ -11,7 +11,8 @@
 class Person {
     // constructor -> 이걸 이용해 필요한 데이터를 전달받음
     constructor(name, age) {
-        //fields -> Person 클래스 안에 존재하는 this.name, this.age 변수 안에 전달받은 데이터 넣음(여기선 따로 변수 선언안해줘도 되는구나)
+        //fields -> Person 클래스 안에 존재하는 this.name, this.age 변수 안에 전달받은 데이터 넣음, 이때 명시적으로 따로 변수 선언하지 않아도 this.를 이용해 내부 변수에 접근 가능
+        // 타입스크립트일 경우는 명시적으로 변수 선언을 해줘야 함 - private, public 접근제한자를 통해 클래스 내/외부 접근을 통제할 수 있음. 하지만 자바스크립트에선 접근제한자가 따로 없고 _를 통해 private하게 변수 사용 가능하고 메서드를 통해 내부 상태에 접근 가능
         this.name = name;
         this.age = age;
     }
@@ -42,7 +43,7 @@ class User {
     /* 
 
     - getter함수를 정의하는 순간, constructor에 있는 this.age는 메모리에 있는 값을 읽어오는 것이 아닌 getter를 호출
-    - setter를 정의하는 순간 = age 로 값을 할당할 떄, 바로 메모리에 있는 값을 할당하는 것이 아니라 setter를 호출하게 됨 
+    - setter를 정의하는 순간, = age 로 값을 할당할 떄, 바로 메모리에 있는 값을 할당하는 것이 아니라 setter를 호출하게 됨 
         => 즉, setter안에서 전달된 value를 결국 this.age에 = value로 할당할 때, 메모리에 있는 값을 업데이트하는게 아닌 또 다시 setter를 호출하게 되는 것 
         => 따라서 계속 setter를 호출하게 되니까 무한대 호출하게 됨
     => 이를 방지하기 위해 getter, setter에서 쓰는 변수를 다르게 가져가야 함
@@ -56,7 +57,7 @@ class User {
     // 사용자가 잘못된 값을 입력해도 setter를 통해 값 설정 가능
     // 근데 이 설정하는 걸 다른 사람이 하면 안좋으니까 private하게 해서 encapsulation하는 것
     set age(value) {
-        // this.age = value; 무한
+        // this.age = value; 무한 =value를 하는 순간, 메모리에 있는 값을 업데이트하는게 아니라 setter를 호출하고, 다시 할당하니 다시 setter호출해 무한히 호출하게 됨
 
         // if(value < 0){
         //     throw Error('age can not be negative');
@@ -105,8 +106,9 @@ class Aritcle {
 
 const article1 = new Aritcle(1);
 const article2 = new Aritcle(2);
-console.log(article1.publisher); // undefined
-console.log(Aritcle.publisher); // Dream Coding
+console.log('article1 ',article1.publisher); // undefined
+console.log('Aritcle 객체 자체 접근', Aritcle.publisher); // Dream Coding
+// article1.printPublisher(); // 에러
 Aritcle.printPublisher(); // Dream Coding
 
 // Inheritance 상속 및 다양성? 다형성?
@@ -133,7 +135,7 @@ class Rectangle extends Shape {}
 class Triangle extends Shape {
     draw() {
         super.draw();
-        console.log('🔺');
+        console.log('Triangle에서 재정의된 draw', '🔺');
     }
     // 필요한 함수만 재정의(overriding)할 수 있음
     // 기존에 shape에서 틀렸던 getArea함수를 다시 재정의
@@ -158,7 +160,7 @@ console.log(triangle instanceof Rectangle); // f
 console.log(triangle instanceof Triangle); // t
 console.log(triangle instanceof Shape); // t
 console.log(triangle instanceof Object); // t, 우리가 만든 자바스크립트의 모든 오브젝트, 클래스들은 자바스크립트의 object를 상속함, 따라서 Object에 있는 함수를 오버라이딩할 수 있음, 여기서 toString이용해서 좀 더 의미있는 값을 출력해봄
-console.log(triangle.toString());
+console.log(triangle.toString()); // Triangle: color: red
 
 
 // JavaScript Objects => 자바스크립트 내부에 포함되어진 오브젝트들이 뭐가 있는지 보여줌

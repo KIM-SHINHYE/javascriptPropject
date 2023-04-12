@@ -1,16 +1,16 @@
 // 1. String concatenantion
 // +를 이용해서 문자열과 문자열을 합해서 새로운 문자열 만들 수 있음
 console.log('my' + 'cat');
-console.log('1' + 2); // 숫자열이 문자열로 만듦
+console.log('1' + 2); // 숫자를 문자열로 만듦
 console.log(`string literals: 1 + 2 = ${1 + 2}`); // 백틱 이용하면 줄바꿈, 기호 등 전부 표시 됨
 console.log("ellie's \n\tbook");
 
 // 2. Numeric operators
 console.log(1+1); // add
 console.log(1-1); // substract
-console.log(1/1); // divide
+console.log(1/1); // divide - 몫
 console.log(1*1); // multiply
-console.log(5%2); // remainder
+console.log(5%2); // remainder - 나머지
 console.log(2**3); // exponentation
 
 // 3. Increment and decrement operators
@@ -107,7 +107,7 @@ console.log(ellie1 === ellie3); // true - reference를 가진 애를 할당했�
 
 
 // equality - puzzler
-// === 에선 타입이 다르면 false가 뜸
+// === 에선 값이 같아도 타입이 다르면 false가 뜸
 console.log(0 == false); // true
 console.log(0 === false); // false
 console.log('' == false); // true
@@ -137,8 +137,8 @@ console.log(name === 'ellie' ? 'yes' : 'no');
 // use for multiple if checks
 // use for enum-like value check
 // use for multiple type checks in TS(정해져 있는 타입 검사시)
-const brower = 'IE';
-switch(brower) {
+const broswer = 'IE';
+switch(broswer) {
     case 'IE':
         console.log('go away!');
         break;
@@ -195,7 +195,7 @@ for(let i = 0; i < 10; i++){
 // continue는 지금 것만 스킵하고 다음으로 넘어가는 것
 
 // Q1. iterate from 0 to 10 and print only even numbers (use continue)
-for(let i = 0; i < 10; i++){
+for(let i = 0; i < 11; i++){
     if(i % 2 == 1){
         continue;
     }
@@ -218,7 +218,7 @@ for(let i = 0; i < 11; i++){
 
 // Q2. iterate from 0 to 10 and print numbers until reaching 8(use break)
 for(let i = 0; i < 10; i++){
-    if(i==8){
+    if(i>8){ // 8까지 나와야지,, 8에서 break하면 8출력안되잖아,,
         break;
     }
     console.log(`i : ${i}`);
@@ -228,7 +228,7 @@ console.log('while');
 while(true){
     console.log(`i : ${i}`);
     i++;
-    if(i==8){
+    if(i>8){ // 8까지 나와야지,,
         break;
     }
 }

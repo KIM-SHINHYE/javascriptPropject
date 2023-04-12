@@ -56,7 +56,7 @@ console.log(`value: ${size}, type: ${typeof size}`);
 // 1. number - special numeric values : infinity, -infinity, Nan => 항상 number가 valid한 값인지 확인하고 사용하기
 const infinity = 1 / 0; // 양수를 0으로 나눌 때 infinity
 const negativeInfinity = -1 / 0; // 음수를 0으로 나눌 때, -infinity
-const nAn = 'not a number' / 2;  // // 숫자가 아닌 값을 숫자로 나눌 때, nan
+const nAn = 'not a number' / 2;  // 숫자가 아닌 값을 숫자로 나눌 때, nan
 console.log(infinity);
 console.log(negativeInfinity);
 console.log(nAn);
@@ -104,35 +104,35 @@ const symbol2 = Symbol('id');
 // 같은 식별자인지 판단하기 위해 ===사용
  console.log(symbol1 === symbol2); // false
 
- // 만약, 같은 id값에 대해 동일한 식별자로 만들기 위해선 for사용
- const gSymbol1 = Symbol.for('id');
- const gSymbol2 = Symbol.for('id'); 
+// 만약, 같은 id값에 대해 동일한 식별자로 만들기 위해선 for사용
+const gSymbol1 = Symbol.for('id');
+const gSymbol2 = Symbol.for('id'); 
  console.log(gSymbol1 === gSymbol2); //true
- // symbol은 그냥 출력하려고 하면 에러떠서 .description을 써서 string으로 변환해서 출력해줘야 함
- console.log(`value: ${symbol1.description}, type: ${typeof symbol1}`);
+// symbol은 그냥 출력하려고 하면 에러떠서 .description을 써서 string으로 변환해서 출력해줘야 함
+console.log(`value: ${symbol1.description}, type: ${typeof symbol1}`);
 
- // 5. Dynamic typing: dynamically typed language 
- // 어떤 타입인지 선언하지 않고 프로그램이 동작할 때 할당된 값에 따라 타입이 변경될 수 있음
- // - 빠르게 작성할 때 좋지만 큰 플젝에선 strict하지 않아서 단점이 될 수도 있음
+// 5. Dynamic typing: dynamically typed language 
+// 어떤 타입인지 선언하지 않고 프로그램이 동작할 때(runtime시) 할당된 값에 따라 타입이 변경될 수 있음
+// - 빠르게 작성할 때 좋지만 큰 플젝에선 strict하지 않아서 단점이 될 수도 있음
 // 그래서 JS에 type을 추가한 TS가 나옴 => 하지만, JS는 브라우저가 이해할 수 있기 때문에 실시간으로 볼 수 있지만, TS는 브라우저가 이해할 수 있는 JS로 trans compiler인 BABEL을 이용해야 볼 수 있음
 
- let text = 'hello'; // string할당
- console.log(text.charAt(0)); // h, 여기선 string이지만 아래 예제들 따라하면 number로 바뀌게 됨, 그 상태에서 다시 text.charAt(0)하게되면 에러
- console.log(`value: ${text}, type : ${typeof text}`); // 이때의 타입은 string
+let text = 'hello'; // string할당
+console.log(text.charAt(0)); // h, 여기선 string이지만 아래 예제들 따라하면 number로 바뀌게 됨, 그 상태에서 다시 text.charAt(0)하게되면 에러
+console.log(`value: ${text}, type : ${typeof text}`); // 이때의 타입은 string
 
- text = 1; // number할당
- console.log(`value: ${text}, type : ${typeof text}`); // 이때의 타입은 number
+text = 1; // number할당
+console.log(`value: ${text}, type : ${typeof text}`); // 이때의 타입은 number
 
- text = '7' + 5; // string과 number를 합치면 number를 string 으로 변환
- console.log(`value: ${text}, type : ${typeof text}`); // 이때의 타입은 string
+text = '7' + 5; // string과 number를 합치면 number를 string 으로 변환
+console.log(`value: ${text}, type : ${typeof text}`); // 이때의 타입은 string
 
- text = '8' / '2';
- console.log(`value: ${text}, type : ${typeof text}`); // 이때의 타입은 number(알아서 number로 인식해서 나눠줌)
- console.log(text.charAt(0)); // 에러(현재 number형임)
+text = '8' / '2';
+console.log(`value: ${text}, type : ${typeof text}`); // 이때의 타입은 number(알아서 number로 인식해서 나눠줌)
+console.log(text.charAt(0)); // 에러(현재 number형임)
 
- // 만약, string으로 선언 후, number로 할당한 후에 charAt사용하려면 에러 뜸
+// 만약, string으로 선언 후, number로 할당한 후에 charAt사용하려면 에러 뜸
 
- // object, real-life object, data structure
- const ellie = {name : 'ellie', age:20}; // ellie라는 객체의 name은 'ellie', age는 20
- // ellie라는 객체는 const로 지정되어 한 번 할당된 후, 해당 메모리로 접근 할 수 있는 주소가 잠겨져 있어 다른 객체로 바꿀 수 없지만, 객체 안에 있는 name, age에 대한 변수는 또 다른 메모리에 할당되어 있기 때문에 바꿀 수 있음
+// object, real-life object, data structure
+const ellie = {name : 'ellie', age:20}; // ellie라는 객체의 name은 'ellie', age는 20
+// ellie라는 객체는 const로 지정되어 한 번 할당된 후, 해당 메모리로 접근 할 수 있는 주소가 잠겨져 있어 다른 객체로 바꿀 수 없지만, 객체 안에 있는 name, age에 대한 변수는 또 다른 메모리에 할당되어 있기 때문에 바꿀 수 있음
 ellie.name = 21;
