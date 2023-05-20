@@ -1,0 +1,19 @@
+.box {
+    width: 100px;
+    height: 100px;
+    background-color: royalblue;
+}
+
+/* 가상 요소를 사용할 때는 content를 꼭 써줘야 함*/
+/* .box::before {
+content: "before!!!! "
+} */
+
+/* 가상요소를 쓸 때는 content속성과 한 세트이기 때문에 아무것도 쓰지 않더라도 ""라도 써야 함, 가상 요소는 inline요소이기 때문에 width, height를 지정해도 아무 반응 없음, 따라서 block으로 만들어야 하는데 이를 위해 속성 지정해줘야 함 */
+.box::after {
+    content: "";
+    width: 30px;
+    height: 30px;
+    display: block;
+    background-color:cadetblue;
+}

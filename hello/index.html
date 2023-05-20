@@ -8,8 +8,15 @@
   <!-- min이 따로 없어서 min만 붙여줌, 기본 브라우저에서의 css를 reset시키는 것이므로 main.css보다 먼저 써줘야 함 -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
   <link rel="stylesheet" href="./main.css">
+  <link rel="stylesheet" href="./box.css">
+  <!-- 현재, div태그 값을 읽기 전에 main.js가 실행되기 때문에 dom에 접근해서 값을 가져와도 없는 것, 따라서 defer속성을 적어줘야 함 -->
+  <script defer src="./main.js"></script>
 </head>
 <body>
-  <div></div>
+  <!-- data- 로 한 걸  js에서 dataset.fruitName 이런 식으로 사용 가능-->
+  <div data-fruit-name="apple">APPLE</div>
+  <div data-fruit-name="banana">BANANA</div>
+
+  <div>Hello World</div>
 </body>
 </html>

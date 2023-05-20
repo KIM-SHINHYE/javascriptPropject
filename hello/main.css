@@ -1,5 +1,10 @@
-div {
+/* @import url("./box.css"); */
+
+/* div {
   width: 200px;
   height: 100px;
   background-color: orange;
+} */
+div {
+  font-size: 100px;
 }

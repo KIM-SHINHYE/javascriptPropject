@@ -1,0 +1,25 @@
+.parent {
+    width: 300px;
+    height: 200px;
+    background-color: orangered;
+}
+
+/* 높이 값을 지정해주지 않으면 0px. 그렇게 되면 화면에 보여주지 않음, 부모와 동일하게 200가져감,요소는 기본적으로 색상이 존재하지 않기 때문에 배경색을 넣어줌으로써 화면에 보이게 할 수 있음 */
+.child {
+    width: 100px;
+    /* height: 200px; */
+    height: inherit;
+    background-color: inherit;
+    /* 
+    배경색도 같은 색을 유지한다면 상속개념 적용가능
+    - position: fixed는 화면의 viewport를 기준으로 배치하겠다는 의미
+    - 위에서 100px, 오른쪽에서 10px에 배치하겠다는 것
+    */
+    position: fixed;
+    top: 100px;
+    right: 10px;
+}
+
+/* 만약 여기서 child에 있는 높이를 부모 높이에 맞춰서 설정해 놓은 경우, 직접 때려넣은 값은 부모의 값이 바뀌면 자식의 값은 변하지 않게됨. 이때 inherit을 이용해 부모 값에 맞춰가겠다고 설정 */
+
+/*  */
